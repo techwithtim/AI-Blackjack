@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 from blackjack import BlackjackGame
 
 class BlackjackQLearning:
@@ -99,6 +100,14 @@ class BlackjackQLearning:
 
         final_result = game.game_result()
         return final_result
+        
+    def save_model(self, filename):
+        with open(filename, 'wb') as file:
+            pickle.dump(self.Q, file)
+
+    def load_model(self, filename):
+        with open(filename, 'rb') as file:
+            self.Q = pickle.load(file)
 
 
 # Train the agent
